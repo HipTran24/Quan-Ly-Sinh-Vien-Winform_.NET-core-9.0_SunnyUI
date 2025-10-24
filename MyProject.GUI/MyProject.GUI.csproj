@@ -1,0 +1,125 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.105.0" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="3.3.0" />
+    <PackageReference Include="LiveChartsCore" Version="2.0.0-rc5.1" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView" Version="2.0.0-rc5.1" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WinForms" Version="2.0.0-rc5.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.0-rc.1.25451.107" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="10.0.0-rc.1.25451.107" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0-rc.1.25451.107" />
+    <PackageReference Include="SunnyUI" Version="3.8.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyProject.BLL\MyProject.BLL.csproj" />
+    <ProjectReference Include="..\MyProject.DAL\MyProject.DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="formForgotPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="formInfoCalendar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="formInfoFaculty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="formInfoLecturer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="formInfoScore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="formInfoStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="formInfoSubject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="formInfoUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="formInfoUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="formMainLecturer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="formLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="formMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="formSoftWareInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ucCalendar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucChangeInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucConfirmOTP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucEvaluate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucFaculty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucItemPost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucLecturers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucResetPassword.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucScore.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucStudents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucSubject.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucUpdateAccount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ucUpdateInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

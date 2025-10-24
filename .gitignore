@@ -1,0 +1,34 @@
+# Build
+bin/
+obj/
+[Ll]og/
+*.log
+
+# IDE
+.vs/
+.vscode/
+
+# User-specific
+*.user
+*.suo
+
+# NuGet
+packages/
+*.nupkg
+.nuget/
+
+# Publish/temp
+publish/
+*.tmp
+*.temp
+
+# Databases/local data
+*.mdf
+*.ldf
+App_Data/
+
+# Secrets / env
+*.secret*
+*.key
+.env
+.env.*.local
