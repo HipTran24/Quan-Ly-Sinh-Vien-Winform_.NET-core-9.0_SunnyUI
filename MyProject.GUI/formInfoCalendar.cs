@@ -77,10 +77,6 @@ namespace MyProject.GUI
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         private void formInfoCalendar_Load(object sender, EventArgs e)
         {
@@ -93,6 +89,11 @@ namespace MyProject.GUI
             // Định dạng ngày tháng
             dtpCalen.Format = DateTimePickerFormat.Custom;
             dtpCalen.CustomFormat = "dd/MM/yyyy"; // hoặc "dddd, dd MMMM yyyy" để hiện thứ + tháng
+        }
+
+        private void btnCancel_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -74,7 +74,7 @@ namespace MyProject.GUI
                     dbLecturer.Email = email;
                     dbLecturer.SDT = phone;
 
-                    _lecturerSvc.Update(dbLecturer);  
+                    _lecturerSvc.Update(dbLecturer);
 
                     u.lecturers.HoTen = dbLecturer.HoTen;
                     u.lecturers.Email = dbLecturer.Email;
@@ -106,7 +106,7 @@ namespace MyProject.GUI
 
                     string diaChi = (tbAddress.Text ?? "").Trim();
 
-                    var svId = u.students.MaSV;   
+                    var svId = u.students.MaSV;
                     var dbStudent = _studentSvc.GetById(svId);
                     if (dbStudent == null)
                     {
@@ -123,7 +123,7 @@ namespace MyProject.GUI
                     dbStudent.GioiTinh = gioiTinh;
                     dbStudent.DiaChi = diaChi;
 
-                    _studentSvc.Update(dbStudent);    
+                    _studentSvc.Update(dbStudent);
 
                     u.students.HoTen = dbStudent.HoTen;
                     u.students.Email = dbStudent.Email;
@@ -153,7 +153,7 @@ namespace MyProject.GUI
         private void SetEditButtonsText()
         {
             btnEdit.Text = _editMode ? "Hủy" : "Sửa";
-            btnUpdate.Enabled = _editMode;  
+            btnUpdate.Enabled = _editMode;
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -325,6 +325,7 @@ namespace MyProject.GUI
             ctrl.Enabled = canEdit;
             ctrl.TabStop = canEdit;
         }
+
 
     }
 }

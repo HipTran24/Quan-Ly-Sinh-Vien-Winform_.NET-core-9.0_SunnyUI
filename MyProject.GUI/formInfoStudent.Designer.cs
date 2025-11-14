@@ -53,35 +53,39 @@
             // 
             // tbName
             // 
-            tbName.Location = new Point(116, 84);
+            tbName.Location = new Point(93, 67);
+            tbName.Margin = new Padding(2, 2, 2, 2);
             tbName.Name = "tbName";
-            tbName.Size = new Size(216, 31);
+            tbName.Size = new Size(174, 27);
             tbName.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(234, 9);
+            label2.Location = new Point(187, 7);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(283, 38);
+            label2.Size = new Size(244, 32);
             label2.TabIndex = 2;
             label2.Text = "Thông Tin Sinh Viên";
             // 
             // tbID
             // 
-            tbID.Location = new Point(507, 84);
+            tbID.Location = new Point(406, 67);
+            tbID.Margin = new Padding(2, 2, 2, 2);
             tbID.Name = "tbID";
-            tbID.Size = new Size(199, 31);
+            tbID.Size = new Size(160, 27);
             tbID.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(352, 90);
+            label3.Location = new Point(282, 72);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(149, 25);
+            label3.Size = new Size(121, 20);
             label3.TabIndex = 3;
             label3.Text = "Mã số sinh viên:";
             // 
@@ -89,9 +93,10 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(35, 90);
+            label1.Location = new Point(28, 72);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(75, 25);
+            label1.Size = new Size(60, 20);
             label1.TabIndex = 0;
             label1.Text = "Họ tên:";
             // 
@@ -99,9 +104,10 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(8, 296);
+            label4.Location = new Point(6, 237);
+            label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(102, 25);
+            label4.Size = new Size(83, 20);
             label4.TabIndex = 5;
             label4.Text = "Ngày sinh:";
             // 
@@ -109,18 +115,20 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(404, 152);
+            label5.Location = new Point(323, 122);
+            label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(90, 25);
+            label5.Size = new Size(73, 20);
             label5.TabIndex = 7;
             label5.Text = "Giới tính:";
             // 
             // rbtMen
             // 
             rbtMen.AutoSize = true;
-            rbtMen.Location = new Point(500, 150);
+            rbtMen.Location = new Point(400, 120);
+            rbtMen.Margin = new Padding(2, 2, 2, 2);
             rbtMen.Name = "rbtMen";
-            rbtMen.Size = new Size(75, 29);
+            rbtMen.Size = new Size(62, 24);
             rbtMen.TabIndex = 8;
             rbtMen.TabStop = true;
             rbtMen.Text = "Nam";
@@ -129,9 +137,10 @@
             // rbtWomen
             // 
             rbtWomen.AutoSize = true;
-            rbtWomen.Location = new Point(582, 150);
+            rbtWomen.Location = new Point(466, 120);
+            rbtWomen.Margin = new Padding(2, 2, 2, 2);
             rbtWomen.Name = "rbtWomen";
-            rbtWomen.Size = new Size(61, 29);
+            rbtWomen.Size = new Size(50, 24);
             rbtWomen.TabIndex = 9;
             rbtWomen.TabStop = true;
             rbtWomen.Text = "Nữ";
@@ -139,61 +148,68 @@
             // 
             // tbAddress
             // 
-            tbAddress.Location = new Point(115, 218);
+            tbAddress.Location = new Point(92, 174);
+            tbAddress.Margin = new Padding(2, 2, 2, 2);
             tbAddress.Name = "tbAddress";
-            tbAddress.Size = new Size(262, 31);
+            tbAddress.Size = new Size(210, 27);
             tbAddress.TabIndex = 11;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(34, 221);
+            label6.Location = new Point(27, 177);
+            label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(75, 25);
+            label6.Size = new Size(60, 20);
             label6.TabIndex = 10;
             label6.Text = "Địa chỉ:";
             // 
             // tbEmail
             // 
-            tbEmail.Location = new Point(111, 152);
+            tbEmail.Location = new Point(89, 122);
+            tbEmail.Margin = new Padding(2, 2, 2, 2);
             tbEmail.Name = "tbEmail";
-            tbEmail.Size = new Size(269, 31);
+            tbEmail.Size = new Size(216, 27);
             tbEmail.TabIndex = 13;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(42, 155);
+            label7.Location = new Point(34, 124);
+            label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(63, 25);
+            label7.Size = new Size(51, 20);
             label7.TabIndex = 12;
             label7.Text = "Email:";
             // 
             // tbNumPhone
             // 
-            tbNumPhone.Location = new Point(506, 221);
+            tbNumPhone.Location = new Point(405, 177);
+            tbNumPhone.Margin = new Padding(2, 2, 2, 2);
             tbNumPhone.Name = "tbNumPhone";
-            tbNumPhone.Size = new Size(200, 31);
+            tbNumPhone.Size = new Size(161, 27);
             tbNumPhone.TabIndex = 15;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(383, 224);
+            label8.Location = new Point(306, 179);
+            label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(129, 25);
+            label8.Size = new Size(104, 20);
             label8.TabIndex = 14;
             label8.Text = "Số điện thoại:";
             // 
             // btnConfirm
             // 
             btnConfirm.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnConfirm.Location = new Point(594, 404);
+            btnConfirm.Location = new Point(475, 323);
+            btnConfirm.Margin = new Padding(2, 2, 2, 2);
             btnConfirm.Name = "btnConfirm";
-            btnConfirm.Size = new Size(112, 34);
+            btnConfirm.Size = new Size(90, 27);
             btnConfirm.TabIndex = 16;
             btnConfirm.Text = "Thêm";
             btnConfirm.UseVisualStyleBackColor = true;
@@ -202,42 +218,47 @@
             // btnCancel
             // 
             btnCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCancel.Location = new Point(468, 404);
+            btnCancel.Location = new Point(374, 323);
+            btnCancel.Margin = new Padding(2, 2, 2, 2);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(112, 34);
+            btnCancel.Size = new Size(90, 27);
             btnCancel.TabIndex = 17;
             btnCancel.Text = "Hủy";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // dtpBDay
             // 
-            dtpBDay.Location = new Point(116, 290);
+            dtpBDay.Location = new Point(93, 232);
+            dtpBDay.Margin = new Padding(2, 2, 2, 2);
             dtpBDay.Name = "dtpBDay";
-            dtpBDay.Size = new Size(300, 31);
+            dtpBDay.Size = new Size(241, 27);
             dtpBDay.TabIndex = 18;
             // 
             // tbIdClass
             // 
-            tbIdClass.Location = new Point(524, 290);
+            tbIdClass.Location = new Point(419, 232);
+            tbIdClass.Margin = new Padding(2, 2, 2, 2);
             tbIdClass.Name = "tbIdClass";
-            tbIdClass.Size = new Size(182, 31);
+            tbIdClass.Size = new Size(146, 27);
             tbIdClass.TabIndex = 20;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(443, 296);
+            label9.Location = new Point(354, 237);
+            label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(76, 25);
+            label9.Size = new Size(61, 20);
             label9.TabIndex = 19;
             label9.Text = "Mã lớp:";
             // 
-            // formInfo
+            // formInfoStudent
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(752, 472);
+            ClientSize = new Size(602, 378);
             Controls.Add(tbIdClass);
             Controls.Add(label9);
             Controls.Add(dtpBDay);
@@ -259,7 +280,8 @@
             Controls.Add(tbName);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "formInfo";
+            Margin = new Padding(2, 2, 2, 2);
+            Name = "formInfoStudent";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Thông tin sinh viên";
             Load += formInfo_Load;

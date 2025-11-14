@@ -24,10 +24,10 @@ namespace Myproject.GUI
             var uiStyleManager = new UIStyleManager(); 
             uiStyleManager.Style = UIStyle.Blue;       
             uiStyleManager.DPIScale = true;           
-            //Application.Run(new formMain());
+           // Application.Run(new formMain());
 
 
-            while (true)
+           while (true)
             {
                 using (var login = new formLogin())
                 {

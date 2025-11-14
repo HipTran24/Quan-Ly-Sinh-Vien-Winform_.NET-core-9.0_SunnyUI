@@ -15,7 +15,7 @@ namespace MyProject.GUI
     public partial class formInfoUpdate : Form
     {
         private readonly NotifyBLL notifyBLL = new NotifyBLL();
-        private Notify existingPost;  // nếu khác null thì là đang sửa
+        private Notify existingPost;
         private string selectedImagePath = null;
         private bool isEditMode = false;
 
@@ -24,8 +24,6 @@ namespace MyProject.GUI
         public formInfoUpdate()
         {
             InitializeComponent();
-            lblAdmin.Text = "Người đăng: admin01";
-            lblDateUp.Text = $"Ngày đăng: {DateTime.Now:dd/MM/yyyy HH:mm}";
         }
 
         public formInfoUpdate(Notify post) : this()
@@ -60,7 +58,7 @@ namespace MyProject.GUI
                 return;
             }
 
-            // ✅ Copy ảnh nếu có chọn mới
+            // Copy ảnh nếu có
             string relativeImage = existingPost?.AnhURL;
             if (!string.IsNullOrEmpty(selectedImagePath))
             {
@@ -72,9 +70,13 @@ namespace MyProject.GUI
                 relativeImage = $"Images/{fileName}";
             }
 
-            if (isEditMode)
+            // Lấy username người đang đăng nhập
+            var cu = MyProject.BLL.Auth.AuthContextService.CurrentUser;
+            var uname = cu?.Username ?? "N/A";
+
+            if (isEditMode && existingPost != null)
             {
-                // Cập nhật dữ liệu
+                // SỬA: giữ nguyên Username & CreatedAt cũ
                 existingPost.TieuDe = tbTitle.Text.Trim();
                 existingPost.NoiDung = rtbContent.Text.Trim();
                 existingPost.AnhURL = relativeImage;
@@ -84,14 +86,14 @@ namespace MyProject.GUI
             }
             else
             {
-                // Thêm mới
+                // THÊM MỚI: gán Username = user hiện tại
                 BaiVietMoi = new Notify
                 {
                     MaTB = Guid.NewGuid().ToString("N").Substring(0, 10),
                     TieuDe = tbTitle.Text.Trim(),
                     NoiDung = rtbContent.Text.Trim(),
                     AnhURL = relativeImage,
-                    Username = "admin01",
+                    Username = uname,                 // <--- KHÔNG hardcode nữa
                     CreatedAt = DateTime.Now
                 };
 
@@ -137,39 +139,44 @@ namespace MyProject.GUI
                 relativeImage = $"Images/{fileName}";
             }
 
+            var cu = MyProject.BLL.Auth.AuthContextService.CurrentUser;
+            var uname = cu?.Username ?? "N/A";
+
             if (isEditMode && existingPost != null)
             {
-                // 📝 ĐANG SỬA — cập nhật thay vì thêm mới
+                // SỬA: KHÔNG đổi Username/CreatedAt
                 existingPost.TieuDe = tbTitle.Text.Trim();
                 existingPost.NoiDung = rtbContent.Text.Trim();
                 existingPost.AnhURL = relativeImage;
 
                 notifyBLL.Update(existingPost);
                 MessageBox.Show("Đã lưu chỉnh sửa bài viết!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                DialogResult = DialogResult.OK; // chỉ đóng form, không thêm bài mới
-                Close();
             }
             else
             {
-                // 🆕 THÊM MỚI
+                // THÊM MỚI
                 BaiVietMoi = new Notify
                 {
                     MaTB = Guid.NewGuid().ToString("N").Substring(0, 10),
                     TieuDe = tbTitle.Text.Trim(),
                     NoiDung = rtbContent.Text.Trim(),
                     AnhURL = relativeImage,
-                    Username = "admin01",
+                    Username = uname,                 // <--- dùng user hiện tại
                     CreatedAt = DateTime.Now
                 };
 
                 notifyBLL.Add(BaiVietMoi);
                 MessageBox.Show("Đăng bài viết thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                DialogResult = DialogResult.OK;
-                Close();
             }
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
-    }
+}
 

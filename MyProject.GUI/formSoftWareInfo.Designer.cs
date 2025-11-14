@@ -45,18 +45,20 @@ namespace MyProject.GUI
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(148, 9);
+            label1.Location = new Point(118, 7);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(253, 32);
+            label1.Size = new Size(210, 28);
             label1.TabIndex = 0;
             label1.Text = "Thông tin phần mềm";
             // 
             // InfoDisplay
             // 
-            InfoDisplay.Location = new Point(12, 93);
+            InfoDisplay.Location = new Point(10, 74);
+            InfoDisplay.Margin = new Padding(2);
             InfoDisplay.Name = "InfoDisplay";
             InfoDisplay.ReadOnly = true;
-            InfoDisplay.Size = new Size(549, 334);
+            InfoDisplay.Size = new Size(440, 268);
             InfoDisplay.TabIndex = 2;
             InfoDisplay.Text = "";
             // 
@@ -64,9 +66,10 @@ namespace MyProject.GUI
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(12, 65);
+            label2.Location = new Point(10, 52);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(147, 25);
+            label2.Size = new Size(121, 20);
             label2.TabIndex = 3;
             label2.Text = "Tên phần mềm: ";
             // 
@@ -74,23 +77,25 @@ namespace MyProject.GUI
             // 
             lbNameSoftware.AutoSize = true;
             lbNameSoftware.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbNameSoftware.Location = new Point(148, 65);
+            lbNameSoftware.Location = new Point(125, 52);
+            lbNameSoftware.Margin = new Padding(2, 0, 2, 0);
             lbNameSoftware.Name = "lbNameSoftware";
-            lbNameSoftware.Size = new Size(63, 25);
+            lbNameSoftware.Size = new Size(51, 20);
             lbNameSoftware.TabIndex = 4;
             lbNameSoftware.Text = "label3";
             // 
             // formSoftWareInfo
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(573, 436);
+            ClientSize = new Size(458, 349);
             Controls.Add(lbNameSoftware);
             Controls.Add(label2);
             Controls.Add(InfoDisplay);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2);
             Name = "formSoftWareInfo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Thông tin phần mềm";

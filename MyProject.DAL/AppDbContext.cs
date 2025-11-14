@@ -27,7 +27,9 @@ namespace MyProject.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=192.168.1.195, 11434;Database=QUANLYSINHVIEN;User ID=sa;Password=Th@123456a;TrustServerCertificate=True;");
+            //optionsBuilder.UseSqlServer(@"Server=LAPTOP-I92LRI56;Database=QUANLYSINHVIEN;User ID=sa;Password=Th@123456a;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(@"Server=LAPTOP-N6NQASQN;Database=QUANLYSINHVIEN;Trusted_Connection=True;TrustServerCertificate=True;");
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

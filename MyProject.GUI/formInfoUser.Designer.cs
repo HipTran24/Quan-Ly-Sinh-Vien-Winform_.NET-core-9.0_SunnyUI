@@ -44,27 +44,30 @@
             // 
             // tbIDUser
             // 
-            tbIDUser.Location = new Point(122, 94);
+            tbIDUser.Location = new Point(98, 75);
+            tbIDUser.Margin = new Padding(2, 2, 2, 2);
             tbIDUser.Name = "tbIDUser";
-            tbIDUser.Size = new Size(202, 31);
+            tbIDUser.Size = new Size(162, 27);
             tbIDUser.TabIndex = 70;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(30, 102);
+            label9.Location = new Point(24, 82);
+            label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(86, 25);
+            label9.Size = new Size(70, 20);
             label9.TabIndex = 68;
             label9.Text = "Mã user:";
             // 
             // btnCancel
             // 
             btnCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCancel.Location = new Point(451, 249);
+            btnCancel.Location = new Point(361, 199);
+            btnCancel.Margin = new Padding(2, 2, 2, 2);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(112, 34);
+            btnCancel.Size = new Size(90, 27);
             btnCancel.TabIndex = 67;
             btnCancel.Text = "Hủy";
             btnCancel.UseVisualStyleBackColor = true;
@@ -73,9 +76,10 @@
             // btnConfirm
             // 
             btnConfirm.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnConfirm.Location = new Point(577, 249);
+            btnConfirm.Location = new Point(462, 199);
+            btnConfirm.Margin = new Padding(2, 2, 2, 2);
             btnConfirm.Name = "btnConfirm";
-            btnConfirm.Size = new Size(112, 34);
+            btnConfirm.Size = new Size(90, 27);
             btnConfirm.TabIndex = 66;
             btnConfirm.Text = "Thêm";
             btnConfirm.UseVisualStyleBackColor = true;
@@ -85,18 +89,20 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(43, 170);
+            label8.Location = new Point(34, 136);
+            label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(73, 25);
+            label8.Size = new Size(59, 20);
             label8.TabIndex = 64;
             label8.Text = "Vai trò:";
             // 
             // tbPWord
             // 
-            tbPWord.Location = new Point(478, 162);
+            tbPWord.Location = new Point(382, 130);
+            tbPWord.Margin = new Padding(2, 2, 2, 2);
             tbPWord.Name = "tbPWord";
             tbPWord.PasswordChar = '*';
-            tbPWord.Size = new Size(202, 31);
+            tbPWord.Size = new Size(162, 27);
             tbPWord.TabIndex = 62;
             tbPWord.TextChanged += tbPWord_TextChanged;
             // 
@@ -104,9 +110,10 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(374, 168);
+            label3.Location = new Point(299, 134);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(98, 25);
+            label3.Size = new Size(79, 20);
             label3.TabIndex = 61;
             label3.Text = "Mật khẩu:";
             // 
@@ -114,43 +121,48 @@
             // 
             lbformName.AutoSize = true;
             lbformName.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbformName.Location = new Point(236, 19);
+            lbformName.Location = new Point(189, 15);
+            lbformName.Margin = new Padding(2, 0, 2, 0);
             lbformName.Name = "lbformName";
-            lbformName.Size = new Size(272, 38);
+            lbformName.Size = new Size(234, 32);
             lbformName.TabIndex = 60;
             lbformName.Text = "Cập nhập tài khoản";
             lbformName.TextAlign = ContentAlignment.TopCenter;
             // 
             // tbUserName
             // 
-            tbUserName.Location = new Point(478, 94);
+            tbUserName.Location = new Point(382, 75);
+            tbUserName.Margin = new Padding(2, 2, 2, 2);
             tbUserName.Name = "tbUserName";
-            tbUserName.Size = new Size(202, 31);
+            tbUserName.Size = new Size(162, 27);
             tbUserName.TabIndex = 59;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(373, 100);
+            label1.Location = new Point(298, 80);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(99, 25);
+            label1.Size = new Size(80, 20);
             label1.TabIndex = 58;
             label1.Text = "Tài khoản:";
             // 
             // cbRole
             // 
             cbRole.FormattingEnabled = true;
-            cbRole.Location = new Point(122, 162);
+            cbRole.Location = new Point(98, 130);
+            cbRole.Margin = new Padding(2, 2, 2, 2);
             cbRole.Name = "cbRole";
-            cbRole.Size = new Size(202, 33);
+            cbRole.Size = new Size(162, 28);
             cbRole.TabIndex = 71;
+            cbRole.SelectedIndexChanged += cbRole_SelectedIndexChanged;
             // 
             // formInfoUser
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(744, 327);
+            ClientSize = new Size(595, 262);
             Controls.Add(cbRole);
             Controls.Add(tbIDUser);
             Controls.Add(label9);
@@ -163,6 +175,7 @@
             Controls.Add(tbUserName);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2, 2, 2, 2);
             Name = "formInfoUser";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cập nhật tài khoản";

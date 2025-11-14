@@ -185,7 +185,7 @@ namespace MyProject.GUI
                 float? ck = TryF(r["DiemCK"]);
                 float? tb = TryF(r["DiemTrungBinh"]);
 
-                var exist = db.Set<Score>().FirstOrDefault(x => x.MaSV == maSV && x.MaMH == maMH && x.HocKy == hocKy);
+                var exist = db.Set<Score>().FirstOrDefault(x => x.MaSV == maSV && x.MaMH == maMH);
 
                 if (exist == null)
                 {

@@ -18,11 +18,11 @@ namespace MyProject.DAL.Models
         public string TieuDe { get; set; }
         public string NoiDung { get; set; }
         public string ? AnhURL { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now; // ✅ Thêm dòng này
+        public DateTime CreatedAt { get; set; } = DateTime.Now; 
         [Required]
-        public string Username { get; set; }
 
         [ForeignKey("Username")]
+        public string Username { get; set; }
         public AppUsers Admin { get; set; }
     }
 }

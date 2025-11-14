@@ -18,7 +18,7 @@ namespace MyProject.GUI
         private string mode;
         public formInfoStudent(string mode, string maSV = "",
                     string hoTen = "",
-                    string maLop ="",
+                    string maLop = "",
                     DateOnly? ngaySinh = null,
                     string gioiTinh = "",
                     string diaChi = "",
@@ -141,6 +141,11 @@ namespace MyProject.GUI
         private void formInfo_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -67,11 +67,11 @@ namespace MyProject.GUI
                 }
 
                 var row = CalendarDisplay.CurrentRow;
-                string maMH = row.Cells["ColMaMH"].Value.ToString();
-                string maGV = row.Cells["ColMaGV"].Value.ToString();
-                DateOnly ngay = (DateOnly)row.Cells["ColNgay"].Value;
-                string tiet = row.Cells["ColTietHoc"].Value.ToString();
-                string phong = row.Cells["ColPhongHoc"].Value.ToString();
+                string maMH = row.Cells[0].Value.ToString();
+                string maGV = row.Cells[1].Value.ToString();
+                DateOnly ngay = DateOnly.ParseExact(row.Cells[2].Value.ToString(), "dd/MM/yyyy", null);
+                string tiet = row.Cells[3].Value.ToString();
+                string phong = row.Cells[4].Value.ToString();
 
                 var f = new formInfoCalendar("edit", maMH, maGV, ngay, tiet, phong);
                 if (f.ShowDialog() == DialogResult.OK)
@@ -112,7 +112,6 @@ namespace MyProject.GUI
                                   s => (s.TenMH ?? s.MaMH).Trim(),
                                   StringComparer.OrdinalIgnoreCase);
 
-                // Project có TenMH
                 var data = list.Select(c => new
                 {
                     MaMH = c.MaMH,
@@ -129,7 +128,6 @@ namespace MyProject.GUI
 
                 CalendarDisplay.DataSource = null;
 
-                // Áp mapping theo vai trò
                 if (AuthContextService.IsAdmin)
                     EnsureAdminColumns();
                 else
@@ -172,7 +170,7 @@ namespace MyProject.GUI
             var row = CalendarDisplay.CurrentRow;
             string maMH = row.Cells["ColMaMH"].Value.ToString();
             string maGV = row.Cells["ColMaGV"].Value.ToString();
-            DateOnly ngay = (DateOnly)row.Cells["ColNgay"].Value;
+            DateOnly ngay = DateOnly.ParseExact(row.Cells[2].Value.ToString(), "dd/MM/yyyy", null);
             string tietHoc = row.Cells["ColTietHoc"].Value.ToString();
 
             DialogResult confirm = MessageBox.Show(

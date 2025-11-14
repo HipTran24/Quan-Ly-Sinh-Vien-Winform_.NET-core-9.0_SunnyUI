@@ -25,7 +25,8 @@ namespace MyProject.GUI
 
         private DateOnly _monday = DateOnly.FromDateTime(DateTime.Today);
         private string _maSV = "";
-
+        private const int CardTarget = 1000;   // bề rộng mong muốn của mỗi card
+        private const int CardMin = 500;
         public formMainStudent()
         {
             InitializeComponent();
@@ -348,21 +349,29 @@ namespace MyProject.GUI
         {
             if (_flp == null || _flp.IsDisposed) return;
 
-            void ResizeOnce()
-            {
-                int padding = _flp.Padding.Horizontal;
-                int scrollW = _flp.VerticalScroll.Visible ? SystemInformation.VerticalScrollBarWidth : 0;
-                int usable = Math.Max(200, _flp.ClientSize.Width - padding - scrollW);
+            // bề rộng hữu ích (trừ thanh cuộn dọc nếu có)
+            int w = _flp.ClientSize.Width;
+            if (_flp.VerticalScroll.Visible)
+                w -= SystemInformation.VerticalScrollBarWidth;
 
-                foreach (Control c in _flp.Controls)
+            // tính bề rộng card & padding trái/phải để căn giữa
+            int cardW = Math.Max(CardMin, Math.Min(CardTarget, w - 24)); // 24 = đệm tối thiểu hai bên
+            int pad = Math.Max(0, (w - cardW) / 2);
+
+            // căn giữa nguyên cột bằng Padding
+            _flp.Padding = new Padding(pad, 12, pad, 12);
+
+            // áp cho từng card
+            foreach (Control c in _flp.Controls)
+            {
+                if (c is ucItemPost)
                 {
-                    int w = Math.Max(c.MinimumSize.Width, usable - c.Margin.Horizontal);
-                    if (c.Width != w) c.Width = w;
+                    c.Width = cardW;
+                    c.Margin = new Padding(0, 12, 0, 12);
+                    c.Anchor = AnchorStyles.Top;                 // chỉ Top, tránh trái/phải
+                    c.MinimumSize = new Size(0, c.MinimumSize.Height); // KHÔNG khóa bề rộng tối thiểu
                 }
             }
-
-            ResizeOnce();
-            BeginInvoke((Action)ResizeOnce);
         }
         private static string ThuVN(DateOnly d) => d.DayOfWeek switch
         {

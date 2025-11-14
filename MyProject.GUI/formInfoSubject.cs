@@ -88,5 +88,10 @@ namespace MyProject.GUI
                 MessageBox.Show("Lỗi khi lưu: " + ex.Message);
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

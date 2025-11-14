@@ -12,8 +12,8 @@ namespace MyProject.BLL.Service
     public class EmailService
     {
 
-        private readonly string _fromEmail = "thanhhiepegn2412@gmail.com"; // Gmail của bạn
-        private readonly string _password = "zhlk mwul augf cxqw";    // App Password 16 ký tự
+        private readonly string _fromEmail = "tranthanhhiep8125@gmail.com"; 
+        private readonly string _password = "zmsz axyu pfko rpbw";   
         private readonly string _displayName = "Quản lý sinh viên HUTECH";
 
         public async Task SendAccountActivationEmailAsync(string toEmail, string username, string password)

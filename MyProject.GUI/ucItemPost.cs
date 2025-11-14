@@ -12,26 +12,42 @@ namespace MyProject.GUI
     {
         private Notify _baiViet;
         private bool _readOnlyMode;
-        private Label? _lblStatus; // label “ghi trạng thái” đặt dưới ảnh
-
-        // Sửa nullable + xoá trùng khai báo
-        public event EventHandler? DaSuaThanhCong;          // để báo ucUpdateInfo reload
-        public event EventHandler<Notify>? XoaClicked;
+        private Label? _lblStatus;
         private bool _isReflowing = false;
+
+        public event EventHandler? DaSuaThanhCong;
+        public event EventHandler<Notify>? XoaClicked;
+
+        private const int PadX = 28;            
+        private const int GapY = 10;          
+        private const int CardMaxWidth = 960;
+        private const int CardMinWidth = 420;
 
         public ucItemPost()
         {
             InitializeComponent();
-            // Khi control đã tạo handle, áp lại các state để không vỡ Designer
+
             this.HandleCreated += (s, e) =>
             {
+                EnsureButtonPanel();            // đảm bảo có panel nút
                 ApplyReadOnlyMode();
                 RenderStatusBelowImage();
+                Reflow();
+                CenterSelfInParent();
             };
+
             this.Resize += (s, e) =>
             {
-                if (_isReflowing) return;   // tránh gọi lại khi chính Reflow đang chạy
+                if (_isReflowing) return;
                 Reflow();
+                CenterSelfInParent();
+            };
+
+            this.ParentChanged += (s, e) =>
+            {
+                HookParentResize(false);
+                HookParentResize(true);
+                CenterSelfInParent();
             };
         }
 
@@ -50,11 +66,18 @@ namespace MyProject.GUI
             set { _readOnlyMode = value; ApplyReadOnlyMode(); }
         }
 
+        private void HookParentResize(bool attach)
+        {
+            if (Parent == null) return;
+            if (attach) Parent.Resize += Parent_Resize;
+            else Parent.Resize -= Parent_Resize;
+        }
+
+        private void Parent_Resize(object? sender, EventArgs e) => CenterSelfInParent();
+
         private void ApplyReadOnlyMode()
         {
-            // Phòng null khi Designer gọi sớm
             if (btnSua == null || btnXoa == null) return;
-
             btnSua.Visible = !_readOnlyMode;
             btnXoa.Visible = !_readOnlyMode;
             AdjustLayoutForReadOnly();
@@ -64,95 +87,92 @@ namespace MyProject.GUI
         {
             if (_baiViet == null) return;
 
-            // Người đăng & tiêu đề
             lblNguoiDang.Text = $"Đăng bởi {_baiViet.Username} • {_baiViet.CreatedAt:dd/MM/yyyy HH:mm}";
             lblTieuDe.Text = _baiViet.TieuDe ?? "";
             SetupTitleStyle();
 
-            // Ảnh (cố định chiều cao để layout không nhảy)
+            // Ảnh
             picAnh.Image = null;
             if (!string.IsNullOrEmpty(_baiViet.AnhURL))
             {
                 string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _baiViet.AnhURL);
                 if (System.IO.File.Exists(path))
-                {
                     picAnh.Image = Image.FromFile(path);
-                }
             }
             picAnh.SizeMode = PictureBoxSizeMode.Zoom;
-            picAnh.Height = 180;              
+            picAnh.Height = 320;
 
             // Status + Nội dung
-            RenderStatusBelowImage();           // KHÔNG Dock
+            RenderStatusBelowImage();
+
             lbNoiDung.Text = _baiViet.NoiDung ?? "";
             lbNoiDung.ForeColor = Color.Black;
             lbNoiDung.Font = new Font(lbNoiDung.Font, FontStyle.Regular);
             lbNoiDung.AutoSize = false;
             lbNoiDung.TextAlign = ContentAlignment.TopLeft;
 
-            // Sắp xếp tất cả
+            EnsureButtonPanel(); // chắc chắn 2 nút nằm trong _btnBar
+
             Reflow();
+            CenterSelfInParent();
         }
 
 
-        private void btnSua_Click_1(object sender, EventArgs e)
+        private void EnsureButtonPanel()
         {
-            if (_baiViet == null) return;
-            using var form = new formInfoUpdate(_baiViet); // truyền bài viết cũ vào
-            if (form.ShowDialog() == DialogResult.OK)
+            if (_btnBar == null)
             {
-                DaSuaThanhCong?.Invoke(this, EventArgs.Empty);
+                _btnBar = new Panel
+                {
+                    AutoSize = false,
+                    BackColor = Color.Transparent
+                };
+                this.Controls.Add(_btnBar);
+                _btnBar.BringToFront();
             }
-        }
 
-        private void btnXoa_Click_1(object sender, EventArgs e)
-        {
-            if (_baiViet == null) return;
-            XoaClicked?.Invoke(this, _baiViet);
+            // chuyển 2 nút vào _btnBar (nếu Designer chưa đặt)
+            if (btnSua != null && btnSua.Parent != _btnBar)
+            {
+                btnSua.Parent = _btnBar;
+                btnSua.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            }
+            if (btnXoa != null && btnXoa.Parent != _btnBar)
+            {
+                btnXoa.Parent = _btnBar;
+                btnXoa.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            }
         }
 
         private void RenderStatusBelowImage()
         {
             EnsureStatusLabelCreated();
 
-            // Lấy status từ model
             string statusText = GetStatusTextFromModel(_baiViet);
 
-            _lblStatus!.Text = statusText?.Trim();
-            _lblStatus.Visible = !string.IsNullOrWhiteSpace(_lblStatus.Text);
+            var noiDungText = _baiViet?.NoiDung?.Trim() ?? "";
+            if (!string.IsNullOrWhiteSpace(statusText) &&
+                string.Equals(statusText.Trim(), noiDungText, StringComparison.Ordinal))
+            {
+                statusText = "";
+            }
+
+            _lblStatus!.Text = statusText;
+            _lblStatus.Visible = !string.IsNullOrWhiteSpace(statusText);
 
             if (_lblStatus.Parent != this) this.Controls.Add(_lblStatus);
 
-            // Style (không Dock)
             _lblStatus.AutoSize = false;
             _lblStatus.Dock = DockStyle.None;
             _lblStatus.Font = new Font(Font, FontStyle.Regular);
             _lblStatus.ForeColor = Color.Black;
-            _lblStatus.BackColor = Color.Transparent;
+            _lblStatus.BackColor = Color.FromArgb(245, 245, 245);
             _lblStatus.TextAlign = ContentAlignment.TopLeft;
-            _lblStatus.Padding = new Padding(0);
+            _lblStatus.Padding = new Padding(6, 4, 6, 4);
 
-            // Vị trí/size tạm – Reflow sẽ sắp xếp lại cuối cùng
-            int pad = 24;
-            int contentW = this.ClientSize.Width - pad * 2;
-            _lblStatus.Left = pad + 4;
-            _lblStatus.Width = contentW - 8;
-            _lblStatus.Top = (picAnh?.Bottom ?? 0) + 8;
-            _lblStatus.Height = _lblStatus.Visible
-                ? MeasureTextHeight(_lblStatus.Text, _lblStatus.Font, _lblStatus.Width)
-                : 0;
-
-            Reflow();  // cập nhật layout sau khi đổi Visible/Height
+            Reflow();
         }
 
-        private static int MeasureTextHeight(string text, Font font, int width)
-        {
-            if (string.IsNullOrEmpty(text)) return 0;
-            var sz = TextRenderer.MeasureText(text, font,
-                new Size(width, int.MaxValue),
-                TextFormatFlags.WordBreak | TextFormatFlags.TextBoxControl | TextFormatFlags.NoPadding);
-            return sz.Height;
-        }
         private void SetupTitleStyle()
         {
             lblTieuDe.AutoSize = false;
@@ -161,31 +181,94 @@ namespace MyProject.GUI
             lblTieuDe.Font = new Font(lblTieuDe.Font, FontStyle.Bold);
             lblTieuDe.ForeColor = Color.Black;
         }
+
         private void Reflow()
         {
-            if (_isReflowing) return;    
+            if (_isReflowing) return;
             _isReflowing = true;
             try
             {
-                int padX = 24;
-                int y = lblNguoiDang.Bottom + 6;
-                int contentW = this.ClientSize.Width - padX * 2;
+                // ---- Tính cột nội dung ---
+                int contentW = Math.Max(this.ClientSize.Width - 2 * PadX, 240);
+                int x = (this.ClientSize.Width - contentW) / 2;
+                int y = PadX;
 
+                // Người đăng
+                lblNguoiDang.Left = x;
+                lblNguoiDang.Top = y;
+                lblNguoiDang.Width = contentW;
+                y = lblNguoiDang.Bottom + GapY;
 
-                int bottom;
-                if (_readOnlyMode)
+                // Tiêu đề
+                lblTieuDe.Left = x;
+                lblTieuDe.Top = y;
+                lblTieuDe.Width = contentW;
+                y = lblTieuDe.Bottom + GapY;
+
+                // Ảnh
+                picAnh.Left = x;
+                picAnh.Top = y;
+                picAnh.Width = contentW;
+                y = picAnh.Bottom + GapY;
+
+                // Status (nếu có)
+                if (_lblStatus != null)
                 {
-                    if (btnSua != null) btnSua.Visible = false;
-                    if (btnXoa != null) btnXoa.Visible = false;
-                    bottom = Math.Max(lbNoiDung.Bottom, (_lblStatus?.Bottom ?? 0));
+                    _lblStatus.Left = x + 4;
+                    _lblStatus.Width = contentW - 8;
+                    _lblStatus.Top = y;
+                    _lblStatus.Height = _lblStatus.Visible
+                        ? MeasureTextHeight(_lblStatus.Text, _lblStatus.Font, _lblStatus.Width)
+                        : 0;
+
+                    y = _lblStatus.Bottom + (_lblStatus.Visible ? GapY : 0);
+                }
+
+                lbNoiDung.Left = x;
+                lbNoiDung.Top = y;
+
+                lbNoiDung.AutoSize = false;
+                lbNoiDung.MaximumSize = Size.Empty;               // bỏ giới hạn cũ (0,0 = không giới hạn)
+                lbNoiDung.MinimumSize = new Size(contentW, 0);    // đảm bảo tối thiểu = full ngang
+                lbNoiDung.Width = contentW;
+                lbNoiDung.Padding = new Padding(0);               // (tuỳ) xoá padding nội bộ nếu có
+
+                lbNoiDung.Height = MeasureTextHeight(lbNoiDung.Text ?? "", lbNoiDung.Font, lbNoiDung.Width);
+                y = lbNoiDung.Bottom + GapY;
+
+                // ===== Nút thao tác (Panel _btnBar là 1 dòng riêng) =====
+                if (!_readOnlyMode && (btnSua != null || btnXoa != null) && _btnBar != null)
+                {
+                    _btnBar.Left = x;
+                    _btnBar.Top = y;
+                    _btnBar.Width = contentW;
+
+                    int btnGap = 8;
+                    int right = _btnBar.Width;
+
+                    if (btnXoa != null)
+                    {
+                        btnXoa.Top = 0;
+                        btnXoa.Left = right - btnXoa.Width;
+                        right -= btnXoa.Width + btnGap;
+                    }
+
+                    if (btnSua != null)
+                    {
+                        btnSua.Top = 0;
+                        btnSua.Left = right - btnSua.Width;
+                    }
+
+                    _btnBar.Height = Math.Max(btnSua?.Height ?? 0, btnXoa?.Height ?? 0);
+                    y = _btnBar.Bottom + PadX;
                 }
                 else
                 {
-                    bottom = Math.Max(btnSua?.Bottom ?? y, btnXoa?.Bottom ?? y);
+                    y += PadX;
                 }
 
-                int newHeight = bottom + 16;
-                int target = Math.Max(newHeight, this.MinimumSize.Height);
+                // Chiều cao card
+                int target = Math.Max(y, this.MinimumSize.Height);
                 if (this.Height != target) this.Height = target;
             }
             finally
@@ -194,6 +277,25 @@ namespace MyProject.GUI
             }
         }
 
+        private void CenterSelfInParent()
+        {
+            if (Parent == null) return;
+
+            // Nếu nằm trong FlowLayoutPanel: KHÔNG căn giữa lần nữa.
+            // Để ucUpdateInfo.UpdateCenter() xử lý bằng Padding của flowPanel.
+            if (Parent is FlowLayoutPanel)
+            {
+                // Giữ khoảng cách dọc, bỏ căn lề ngang
+                this.Margin = new Padding(0, this.Margin.Top, 0, this.Margin.Bottom);
+                return;
+            }
+
+            // Ngoài ra (không phải FlowLayoutPanel), giữ logic cũ để tự căn giữa
+            int maxAvail = Math.Max(Parent.ClientSize.Width - 2 * PadX, CardMinWidth);
+            int w = Math.Clamp(maxAvail, CardMinWidth, CardMaxWidth);
+            this.Width = w;
+            this.Left = Math.Max((Parent.ClientSize.Width - this.Width) / 2, PadX);
+        }
 
         private void EnsureStatusLabelCreated()
         {
@@ -205,26 +307,26 @@ namespace MyProject.GUI
                 Height = 24,
                 Margin = new Padding(8, 6, 8, 6),
                 Padding = new Padding(6, 4, 6, 4),
-                Font = new Font(Font, FontStyle.Regular), // ✅ chữ bình thường
-                ForeColor = Color.Black,                  // chữ màu đen
+                Font = new Font(Font, FontStyle.Regular),
+                ForeColor = Color.Black,
                 BackColor = Color.FromArgb(245, 245, 245),
                 TextAlign = ContentAlignment.MiddleLeft,
                 Visible = false
             };
 
             this.Controls.Add(_lblStatus);
-            // đảm bảo nó nằm ngay dưới ảnh khi Dock.Top
             this.Controls.SetChildIndex(_lblStatus, 0);
         }
 
+        // ===== Lấy text trạng thái từ model (KHÔNG dùng NoiDung) =====
         private static string GetStatusTextFromModel(Notify? n)
         {
             if (n == null) return "";
 
             string[] candidates =
             {
-             "NoiDung"
-             };
+                "TrangThai", "Status", "TinhTrang", "TrangThaiDuyet", "ApproveStatus", "State"
+            };
 
             foreach (var name in candidates)
             {
@@ -254,17 +356,38 @@ namespace MyProject.GUI
             _ => $"Mã {code}"
         };
 
-        // =================== LAYOUT ===================
+        private static int MeasureTextHeight(string text, Font font, int width)
+        {
+            if (string.IsNullOrEmpty(text)) return 0;
+            var sz = TextRenderer.MeasureText(text, font,
+                new Size(width, int.MaxValue),
+                TextFormatFlags.WordBreak | TextFormatFlags.TextBoxControl | TextFormatFlags.NoPadding);
+            return sz.Height;
+        }
 
         private void AdjustLayoutForReadOnly()
         {
             int bottomPadding = 16;
             int bottom = 0;
-
             foreach (Control c in this.Controls)
                 bottom = Math.Max(bottom, c.Bottom);
-
             this.Height = bottom + bottomPadding;
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (_baiViet == null) return;
+            using var form = new formInfoUpdate(_baiViet);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                DaSuaThanhCong?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (_baiViet == null) return;
+            XoaClicked?.Invoke(this, _baiViet);
         }
     }
 }

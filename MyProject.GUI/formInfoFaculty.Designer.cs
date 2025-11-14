@@ -51,28 +51,32 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(395, 233);
+            label9.Location = new Point(316, 186);
+            label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(125, 25);
+            label9.Size = new Size(101, 20);
             label9.TabIndex = 39;
             label9.Text = "Số lượng lớp:";
             // 
             // btnCancel
             // 
             btnCancel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCancel.Location = new Point(483, 327);
+            btnCancel.Location = new Point(386, 262);
+            btnCancel.Margin = new Padding(2, 2, 2, 2);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(112, 34);
+            btnCancel.Size = new Size(90, 27);
             btnCancel.TabIndex = 37;
             btnCancel.Text = "Hủy";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click_1;
             // 
             // btnConfirm
             // 
             btnConfirm.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnConfirm.Location = new Point(609, 327);
+            btnConfirm.Location = new Point(487, 262);
+            btnConfirm.Margin = new Padding(2, 2, 2, 2);
             btnConfirm.Name = "btnConfirm";
-            btnConfirm.Size = new Size(112, 34);
+            btnConfirm.Size = new Size(90, 27);
             btnConfirm.TabIndex = 36;
             btnConfirm.Text = "Thêm";
             btnConfirm.UseVisualStyleBackColor = true;
@@ -80,69 +84,77 @@
             // 
             // tbDean
             // 
-            tbDean.Location = new Point(517, 153);
+            tbDean.Location = new Point(414, 122);
+            tbDean.Margin = new Padding(2, 2, 2, 2);
             tbDean.Name = "tbDean";
-            tbDean.Size = new Size(213, 31);
+            tbDean.Size = new Size(171, 27);
             tbDean.TabIndex = 35;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(394, 156);
+            label8.Location = new Point(315, 125);
+            label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(126, 25);
+            label8.Size = new Size(102, 20);
             label8.TabIndex = 34;
             label8.Text = "Trưởng khoa:";
             // 
             // tbEmail
             // 
-            tbEmail.Location = new Point(126, 156);
+            tbEmail.Location = new Point(101, 125);
+            tbEmail.Margin = new Padding(2, 2, 2, 2);
             tbEmail.Name = "tbEmail";
-            tbEmail.Size = new Size(257, 31);
+            tbEmail.Size = new Size(206, 27);
             tbEmail.TabIndex = 33;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(47, 159);
+            label7.Location = new Point(38, 127);
+            label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(63, 25);
+            label7.Size = new Size(51, 20);
             label7.TabIndex = 32;
             label7.Text = "Email:";
             // 
             // tbWRoom
             // 
-            tbWRoom.Location = new Point(146, 230);
+            tbWRoom.Location = new Point(117, 184);
+            tbWRoom.Margin = new Padding(2, 2, 2, 2);
             tbWRoom.Name = "tbWRoom";
-            tbWRoom.Size = new Size(237, 31);
+            tbWRoom.Size = new Size(190, 27);
             tbWRoom.TabIndex = 31;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(0, 236);
+            label6.Location = new Point(0, 189);
+            label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(150, 25);
+            label6.Size = new Size(121, 20);
             label6.TabIndex = 30;
             label6.Text = "Phòng công tác:";
             // 
             // tbID
             // 
-            tbID.Location = new Point(508, 88);
+            tbID.Location = new Point(406, 70);
+            tbID.Margin = new Padding(2, 2, 2, 2);
             tbID.Name = "tbID";
-            tbID.Size = new Size(222, 31);
+            tbID.Size = new Size(178, 27);
             tbID.TabIndex = 25;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(411, 94);
+            label3.Location = new Point(329, 75);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(91, 25);
+            label3.Size = new Size(73, 20);
             label3.TabIndex = 24;
             label3.Text = "Mã khoa:";
             // 
@@ -150,41 +162,45 @@
             // 
             lbformName.AutoSize = true;
             lbformName.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbformName.Location = new Point(252, 18);
+            lbformName.Location = new Point(202, 14);
+            lbformName.Margin = new Padding(2, 0, 2, 0);
             lbformName.Name = "lbformName";
-            lbformName.Size = new Size(227, 38);
+            lbformName.Size = new Size(194, 32);
             lbformName.TabIndex = 23;
             lbformName.Text = "Thêm khoa viện";
             // 
             // tbName
             // 
-            tbName.Location = new Point(128, 88);
+            tbName.Location = new Point(102, 70);
+            tbName.Margin = new Padding(2, 2, 2, 2);
             tbName.Name = "tbName";
-            tbName.Size = new Size(255, 31);
+            tbName.Size = new Size(205, 27);
             tbName.TabIndex = 22;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(28, 94);
+            label1.Location = new Point(22, 75);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(94, 25);
+            label1.Size = new Size(76, 20);
             label1.TabIndex = 21;
             label1.Text = "Tên khoa:";
             // 
             // numQuantityCl
             // 
-            numQuantityCl.Location = new Point(526, 231);
+            numQuantityCl.Location = new Point(421, 185);
+            numQuantityCl.Margin = new Padding(2, 2, 2, 2);
             numQuantityCl.Name = "numQuantityCl";
-            numQuantityCl.Size = new Size(81, 31);
+            numQuantityCl.Size = new Size(65, 27);
             numQuantityCl.TabIndex = 40;
             // 
             // formInfoFaculty
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(752, 412);
+            ClientSize = new Size(602, 330);
             Controls.Add(numQuantityCl);
             Controls.Add(label9);
             Controls.Add(btnCancel);
@@ -201,6 +217,7 @@
             Controls.Add(tbName);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2, 2, 2, 2);
             Name = "formInfoFaculty";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Thông tin khoa viện";
